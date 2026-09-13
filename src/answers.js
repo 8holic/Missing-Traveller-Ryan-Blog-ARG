@@ -2,7 +2,14 @@ export const answerConfigs = [
   {
     password: '741889069912ffe2c95aad40e8607e63df6efd2b67c9732e9131a11598fa2c95',
     title: 'The Traveller in Japan',
-    intro: 'The Traveller seems to have a trip in Japan, your role will be to figure out where did he go. All answers should be in fully lowercase or you can convert it to lowercase.',
+    intro: [
+      'Welcome to the Lamplight Demo',
+      { text: 'You can access the user blog here: ', link: '/blog', label: 'Blog' },
+      'Your job will be to go through the user blog and answer the questions below',
+      'You are provided some hints, look through the blog. Try to solve the mystery of this traveller',
+      'There is no penalty for getting a question wrong, feel free to try!',
+      'Note that all answers are expected to be lowercase'
+    ],
     questions: [
       {
         prompt: 'Based on the airplane photo, which city must he have landed(1 word answer)',
@@ -30,6 +37,7 @@ export const answerConfigs = [
         ]
       },
       {
+        divider: true,
         prompt: 'Where did the traveller have an encounter with someone?(Hint:Webpages might hide information)',
         fields: [
           { hashes: ['c6913ac879f93ebdc710b40022559d9338da21d4adba3eb08614f9e6e4ec82b2'] }

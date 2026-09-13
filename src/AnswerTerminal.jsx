@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { answerConfigs } from './answers.js'
 
 async function sha256(text) {
@@ -93,13 +94,18 @@ function AnswerTerminal() {
       <h1>{config.title}</h1>
       {config.intro && (
         <>
-          <p>{config.intro}</p>
+          {config.intro.map((line, i) =>
+            typeof line === 'string'
+              ? <p key={i}>{line}</p>
+              : <p key={i}>{line.text}<Link to={line.link}>{line.label}</Link></p>
+          )}
           <hr className="answer-divider" />
         </>
       )}
       <form onSubmit={check}>
         {config.questions.map((question, qi) => (
           <div key={qi} className="answer-question">
+            {question.divider && <hr className="answer-divider" />}
             {question.prompt && <p>{question.prompt}</p>}
             {question.fields.map((field, fi) => (
               <div key={fi} className="answer-field">
