@@ -97,7 +97,7 @@ function AnswerTerminal() {
           {config.intro.map((line, i) =>
             typeof line === 'string'
               ? <p key={i}>{line}</p>
-              : <p key={i}>{line.text}<Link to={line.link}>{line.label}</Link></p>
+              : <p key={i}>{line.text}<Link to={line.link} target="_blank" rel="noreferrer">{line.label}</Link></p>
           )}
           <hr className="answer-divider" />
         </>
