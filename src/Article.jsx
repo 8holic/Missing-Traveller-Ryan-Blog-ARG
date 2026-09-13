@@ -1,6 +1,5 @@
 import { articles } from './articles.js'
 import { useParams, Link } from 'react-router-dom'
-import './blog.css'
 
 function Article() {
   const { slug } = useParams()
@@ -23,7 +22,20 @@ function Article() {
       <section className="blog-box">
         <h2>{article.title}</h2>
         <p className="article-date">{article.date}</p>
-        <p className="article-body">{article.body}</p>
+        {article.body.map((block, i) => {
+          if (block.hidden) {
+            return <p key={i} className="article-hidden">{block.hidden}</p>
+          }
+          if (block.text) {
+            return <p key={i} className="article-body">{block.text}</p>
+          }
+          return (
+            <figure key={i} className="article-figure">
+              <img className="article-image" src={block.image} alt={block.alt} />
+              {block.caption && <figcaption>{block.caption}</figcaption>}
+            </figure>
+          )
+        })}
         <Link to="/" className="blog-link">Back to Blog</Link>
       </section>
     </div>

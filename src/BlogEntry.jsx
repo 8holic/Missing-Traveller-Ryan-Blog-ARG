@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { articles } from './articles.js'
-import './blog.css'
 
 function BlogEntry() {
   return (
@@ -12,7 +11,7 @@ function BlogEntry() {
             <div key={article.slug} className="article-card">
               <h3>{article.title}</h3>
               <p className="article-date">{article.date}</p>
-              <p>{article.body.slice(0, 150)}...</p>
+              <p>{article.body.find(b => b.text)?.text.slice(0, 150)}...</p>
               <Link to={`/blog/article/${article.slug}`} className="blog-link">
                 Read Article
               </Link>

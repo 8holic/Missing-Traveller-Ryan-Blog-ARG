@@ -1,14 +1,24 @@
-import { Routes, Route } from 'react-router-dom'
-import NavBar from './NavBar.jsx'
+import { Routes, Route, useLocation, NavLink } from 'react-router-dom'
 import AboutMe from './AboutMe.jsx'
 import BlogEntry from './BlogEntry.jsx'
 import Article from './Article.jsx'
 import AnswerTerminal from './AnswerTerminal.jsx'
 
 function App() {
+  const { pathname } = useLocation()
+
   return (
     <>
-      <NavBar />
+      {pathname !== '/answer' && (
+        <nav className="blog-nav">
+          <NavLink to="/" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            About Me
+          </NavLink>
+          <NavLink to="/blog" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            Articles
+          </NavLink>
+        </nav>
+      )}
       <Routes>
         <Route path="/" element={<AboutMe />} />
         <Route path="/blog" element={<BlogEntry />} />
